@@ -37,7 +37,7 @@ var parseRaw = function(element, state) {
   if (isTrue(element.italic)) node.style.fontStyle = 'italic';
   if (isTrue(element.underlined) || isTrue(element.strikethrough))
     node.style.textDecoration = 
-      (isTrue(element.underline) ? 'underline ' : '') + 
+      (isTrue(element.underlined) ? 'underline ' : '') + 
       (isTrue(element.strikethrough) ? 'line-through' : '');
 
   if ('extra' in element) {
