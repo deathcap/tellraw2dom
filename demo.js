@@ -31,6 +31,15 @@ inputNode.appendChild(document.createTextNode(JSON.stringify(
             "underlined": "false",
             "strikethrough": "false",
             "obfuscated": "false"
+        },
+        {
+            "text": ". then try hovering here",
+            "color": "yellow",
+            "italic": true,
+            "hoverEvent": {
+              "action": "show_item",
+              "value": "{id:322}"
+            }
         }
     ]
 })));
@@ -38,13 +47,26 @@ inputNode.appendChild(document.createTextNode(JSON.stringify(
 var outputNode = document.createElement('div');
 outputNode.setAttribute('style', 'background: black;');
 
+var hoverNode = document.createElement('span');
+hoverNode.style.visibility = 'hidden';
+
+var opts = {
+  hover: function(element, action, ev) {
+           hoverNode.textContent = JSON.stringify(action);
+           hoverNode.style.visibility = '';
+         },
+  hoverOut: function(element, action, ev) {
+           hoverNode.style.visibility = 'hidden';
+        }
+};
+
 var update = function(ev) {
   var inputText = inputNode.value;
 
   while(outputNode.firstChild)
     outputNode.removeChild(outputNode.firstChild);
 
-  var output = tellraw2dom(inputText);
+  var output = tellraw2dom(inputText, opts);
 
   if (output)
     outputNode.appendChild(output);
@@ -53,6 +75,7 @@ var update = function(ev) {
 ever(document.body).on('keydown', update);
 
 document.body.appendChild(inputNode);
+document.body.appendChild(hoverNode);
 document.body.appendChild(document.createElement('br'));
 document.body.appendChild(outputNode);
 

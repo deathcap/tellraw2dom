@@ -58,21 +58,29 @@ var parseRaw = function(raw, opts) {
 
       if (handleClick === undefined) { // default action
         handleClick = function(element, ev) {
-          window.alert('Clicked element: ' + JSON.stringify(element));
+          window.alert('Click action: ' + JSON.stringify(element.clickEvent));
         };
       }
 
       if (handleClick) { // if not no action
         ever(node).on('click', function(ev) {
-          handleClick(element, ev);
+          handleClick(element, element.clickEvent, ev);
         });
       }
     }
 
     if ('hoverEvent' in element) {
-      ever(node).on('mouseover', function(ev) {
-        // TODO
-      });
+      if (opts.hover) {
+        ever(node).on('mouseover', function(ev) {
+          opts.hover(element, element.hoverEvent, ev);
+        });
+      }
+
+      if (opts.hoverOut) {
+        ever(node).on('mouseout', function(ev) {
+          opts.hoverOut(element, element.hoverEvent, ev);
+        });
+      }
     }
 
     if ('extra' in element) {
