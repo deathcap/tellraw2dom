@@ -1,9 +1,7 @@
 var tellraw2dom = require('./');
 var ever = require('ever');
 
-var inputNode = document.createElement('textarea');
-inputNode.setAttribute('cols', '100');
-inputNode.setAttribute('rows', '20');
+var inputNode = document.getElementById('input');
 // based on a good example from http://www.minecraftforum.net/topic/1980545-snapshot-website-to-generate-tellraw-commands/page__st__20#entry25630884
 inputNode.appendChild(document.createTextNode(JSON.stringify(
 {
@@ -44,11 +42,8 @@ inputNode.appendChild(document.createTextNode(JSON.stringify(
     ]
 })));
 
-var outputNode = document.createElement('div');
-outputNode.setAttribute('style', 'background: black;');
-
-var hoverNode = document.createElement('span');
-hoverNode.style.visibility = 'hidden';
+var outputNode = document.getElementById('output');
+var hoverNode = document.getElementById('hover');
 
 var opts = {
   click: function(element, action, ev) {
@@ -76,11 +71,6 @@ var update = function(ev) {
 };
 
 ever(document.body).on('keydown', update);
-
-document.body.appendChild(inputNode);
-document.body.appendChild(hoverNode);
-document.body.appendChild(document.createElement('br'));
-document.body.appendChild(outputNode);
 
 update();
 
