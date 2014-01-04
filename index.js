@@ -33,12 +33,12 @@ var parseRaw = function(element, state) {
 
   if ('color' in element) node.style.color = colormc2html[element.color];
   if ('text' in element) node.textContent = element.text;
-  if (element.bold) node.style.fontWeight = 'bold';
-  if (element.italic) node.style.fontStyle = 'italic';
-  if (element.underlined || element.strikethrough) 
+  if (isTrue(element.bold)) node.style.fontWeight = 'bold';
+  if (isTrue(element.italic)) node.style.fontStyle = 'italic';
+  if (isTrue(element.underlined) || isTrue(element.strikethrough))
     node.style.textDecoration = 
-      (element.underline ? 'underline ' : '') + 
-      (element.strikethrough ? 'line-through' : '');
+      (isTrue(element.underline) ? 'underline ' : '') + 
+      (isTrue(element.strikethrough) ? 'line-through' : '');
 
   if ('extra' in element) {
     element.extra.forEach(function(x) {
