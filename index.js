@@ -1,3 +1,6 @@
+'use strict';
+
+var ever = require('ever');
 
 var colormc2html = {
   black: 'black',
@@ -39,6 +42,18 @@ var parseRaw = function(element, state) {
     node.style.textDecoration = 
       (isTrue(element.underlined) ? 'underline ' : '') + 
       (isTrue(element.strikethrough) ? 'line-through' : '');
+
+  if ('clickEvent' in element) {
+    ever(node).on('click', function(ev) {
+      window.alert('Click event: ' + JSON.stringify(element.clickEvent));
+    });
+  }
+
+  if ('hoverEvent' in element) {
+    ever(node).on('mouseover', function(ev) {
+      // TODO
+    });
+  }
 
   if ('extra' in element) {
     element.extra.forEach(function(x) {
