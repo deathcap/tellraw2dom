@@ -18,6 +18,12 @@ var colormc2html = {
   white: 'white'
 };
 
+var isTrue = function(x) {
+  if (x === undefined) return false;
+  if (x === 'false') return false;
+  return true;
+};
+
 var parseRaw = function(element, state) {
   if (typeof element === 'string') {
     return document.createTextNode(element);
@@ -25,13 +31,14 @@ var parseRaw = function(element, state) {
 
   var node = document.createElement('span');
 
-  if ('color' in element) {
-    node.style.color = colormc2html[element.color];
-  }
-
-  if ('text' in element) {
-    node.textContent = element.text;
-  }
+  if ('color' in element) node.style.color = colormc2html[element.color];
+  if ('text' in element) node.textContent = element.text;
+  if (element.bold) node.style.fontWeight = 'bold';
+  if (element.italic) node.style.fontStyle = 'italic';
+  if (element.underlined || element.strikethrough) 
+    node.style.textDecoration = 
+      (element.underline ? 'underline ' : '') + 
+      (element.strikethrough ? 'line-through' : '');
 
   if ('extra' in element) {
     element.extra.forEach(function(x) {
@@ -40,7 +47,7 @@ var parseRaw = function(element, state) {
   }
 
   return node;
-}
+};
 
 module.exports = function(raw) {
   try {
