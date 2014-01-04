@@ -27,44 +27,7 @@ var isTrue = function(x) {
   return true;
 };
 
-var parseRaw = function(element, state) {
-  if (typeof element === 'string') {
-    return document.createTextNode(element);
-  }
-
-  var node = document.createElement('span');
-
-  if ('color' in element) node.style.color = colormc2html[element.color];
-  if ('text' in element) node.textContent = element.text;
-  if (isTrue(element.bold)) node.style.fontWeight = 'bold';
-  if (isTrue(element.italic)) node.style.fontStyle = 'italic';
-  if (isTrue(element.underlined) || isTrue(element.strikethrough))
-    node.style.textDecoration = 
-      (isTrue(element.underlined) ? 'underline ' : '') + 
-      (isTrue(element.strikethrough) ? 'line-through' : '');
-
-  if ('clickEvent' in element) {
-    ever(node).on('click', function(ev) {
-      window.alert('Click event: ' + JSON.stringify(element.clickEvent));
-    });
-  }
-
-  if ('hoverEvent' in element) {
-    ever(node).on('mouseover', function(ev) {
-      // TODO
-    });
-  }
-
-  if ('extra' in element) {
-    element.extra.forEach(function(x) {
-      node.appendChild(parseRaw(x));
-    });
-  }
-
-  return node;
-};
-
-module.exports = function(raw) {
+var parseRaw = function(raw) {
   try {
     var json = JSON.parse(raw);
   } catch (error) {
@@ -72,9 +35,49 @@ module.exports = function(raw) {
     return document.createTextNode('Invalid JSON: ' + error);
   }
 
-  return parseRaw(json);
+  var parseObject = function(element, state) {
+    if (typeof element === 'string') {
+      return document.createTextNode(element);
+    }
+
+    var node = document.createElement('span');
+
+    if ('color' in element) node.style.color = colormc2html[element.color];
+    if ('text' in element) node.textContent = element.text;
+    if (isTrue(element.bold)) node.style.fontWeight = 'bold';
+    if (isTrue(element.italic)) node.style.fontStyle = 'italic';
+    if (isTrue(element.underlined) || isTrue(element.strikethrough))
+      node.style.textDecoration = 
+        (isTrue(element.underlined) ? 'underline ' : '') + 
+        (isTrue(element.strikethrough) ? 'line-through' : '');
+
+    if ('clickEvent' in element) {
+      ever(node).on('click', function(ev) {
+        window.alert('Click event: ' + JSON.stringify(element.clickEvent));
+      });
+    }
+
+    if ('hoverEvent' in element) {
+      ever(node).on('mouseover', function(ev) {
+        // TODO
+      });
+    }
+
+    if ('extra' in element) {
+      element.extra.forEach(function(x) {
+        node.appendChild(parseObject(x));
+      });
+    }
+
+    return node;
+  };
+
+  return parseObject(json);
 
   // references:
   // http://ezekielelin.com/minecraft/tellraw/
   // https://github.com/deathcap/node-minecraft-protocol/blob/986cf0af918768e98ec6b95a9dfcab46f5204e5e/examples/client_chat.js#L116
 }
+module.exports = parseRaw;
+
+
