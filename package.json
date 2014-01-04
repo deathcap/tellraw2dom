@@ -1,0 +1,21 @@
+{
+  "name": "tellraw2dom",
+  "description": "tellraw to DOM converter",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:deathcap/tellraw2dom.git"
+  },
+  "keywords": [],
+  "dependencies": {
+    "ever": "0.0.3"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "beefy": "0.4.5"
+  },
+  "scripts": {
+    "start": "beefy demo.js:bundle.js 9999"
+  },
+  "license": "MIT"
+}
