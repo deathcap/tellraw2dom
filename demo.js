@@ -51,6 +51,9 @@ var hoverNode = document.createElement('span');
 hoverNode.style.visibility = 'hidden';
 
 var opts = {
+  click: function(element, action, ev) {
+            alert('Click action: ' + JSON.stringify(action));
+         },
   hover: function(element, action, ev) {
            hoverNode.textContent = JSON.stringify(action);
            hoverNode.style.visibility = '';

@@ -54,17 +54,9 @@ var parseRaw = function(raw, opts) {
         (isTrue(element.strikethrough) ? 'line-through' : '');
 
     if ('clickEvent' in element) {
-      var handleClick = opts.click;
-
-      if (handleClick === undefined) { // default action
-        handleClick = function(element, ev) {
-          window.alert('Click action: ' + JSON.stringify(element.clickEvent));
-        };
-      }
-
-      if (handleClick) { // if not no action
+      if (opts.click) {
         ever(node).on('click', function(ev) {
-          handleClick(element, element.clickEvent, ev);
+          opts.click(element, element.clickEvent, ev);
         });
       }
     }
