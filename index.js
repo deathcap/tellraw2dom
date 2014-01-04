@@ -1,11 +1,30 @@
 
-function parseRaw(element, parentState) {
+var colormc2html = {
+  'white': 'white'
+};
+
+var parseRaw = function(element, state) {
   if (typeof element === 'string') {
     return document.createTextNode(element);
-  } else {
-    // TODO
-    return document.createTextNode('TODO');
   }
+
+  var node = document.createElement('span');
+
+  if ('color' in element) {
+    node.style.color = colormc2html[element.color];
+  }
+
+  if ('text' in element) {
+    node.textContent = element.text;
+  }
+
+  if ('extra' in element) {
+    element.extra.forEach(function(x) {
+      node.appendChild(parseRaw(x));
+    });
+  }
+
+  return node;
 }
 
 module.exports = function(raw) {

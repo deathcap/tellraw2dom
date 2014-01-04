@@ -8,6 +8,7 @@ inputNode.setAttribute('rows', '20');
 inputNode.appendChild(document.createTextNode(('value', '{"text":"Hey... ","color":"white","extra":[{"text":"CLICK HERE","color":"red","bold":"true","italic":"false","underlined":"true","strikethrough":"false","obfuscated":"false","clickEvent":{"action":"run_command","value":"/tellraw @p {text:\\"Thanks :3\\",color:green}"}},{"text":" IF YOU DARE","color":"red","bold":"true","italic":"false","underlined":"false","strikethrough":"false","obfuscated":"false"}]}')));
 
 var outputNode = document.createElement('div');
+outputNode.setAttribute('style', 'background: gray;');
 
 var update = function(ev) {
   var inputText = inputNode.value;
