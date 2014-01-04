@@ -1,6 +1,21 @@
 
 var colormc2html = {
-  'white': 'white'
+  black: 'black',
+  dark_blue: '#0000b2',
+  dark_green: '#14ab00',
+  dark_aqua: '#13aaab',
+  dark_red: '#a90400',
+  dark_purple: '#a900b2',
+  gold: '#feac00',
+  gray: 'gray',
+  dark_gray: '#555555',
+  blue: '#544cff',
+  green: '#5cff00',
+  aqua: '#5bffff',
+  red: '#fd5650',
+  light_purple: '#fd4dff',
+  yellow: 'yellow',
+  white: 'white'
 };
 
 var parseRaw = function(element, state) {
