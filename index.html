@@ -2,11 +2,35 @@
 <html>
 <head>
 <title>tellraw2dom demo (run with: npm start)</title>
+<style>
+html, body {
+    height: 100%;
+}
+#input, #output {
+    height: 90%;
+    width: 45%;
+}
+
+#input {
+    float: left;
+}
+
+#output {
+    float: right;
+}
+
+#hover {
+    position: absolute;
+    color: black;
+    font-size: 20pt;
+    background-color: gray;
+    border: 1px solid yellow;
+}
+</style>
 </head>
 <body>
-
 <!-- command based on a good example from http://www.minecraftforum.net/topic/1980545-snapshot-website-to-generate-tellraw-commands/page__st__20#entry25630884 -->
-<textarea cols="100" rows="20" id="input">
+<textarea id="input">
 {
     "text": "Hey... ",
     "color": "white",
@@ -46,8 +70,7 @@
 }
 </textarea>
 <span style="visibility: hidden;" id="hover"></span>
-<br>
-<div style="background: black;" id="output">
+<div style="background: black;" id="output"></div>
 
 <script src="bundle.js"></script>
 </body>

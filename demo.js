@@ -11,6 +11,9 @@ var opts = {
          },
   hover: function(element, action, ev) {
            hoverNode.textContent = JSON.stringify(action);
+           console.log(ev);
+           hoverNode.style.left = ev.x + 'px';
+           hoverNode.style.top = ev.y + 'px';
            hoverNode.style.visibility = '';
          },
   hoverOut: function(element, action, ev) {
@@ -30,7 +33,7 @@ var update = function(ev) {
     outputNode.appendChild(output);
 };
 
-ever(document.body).on('keydown', update);
+ever(document.body).on('keyup', update);
 
 update();
 
