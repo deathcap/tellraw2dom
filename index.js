@@ -27,7 +27,9 @@ var isTrue = function(x) {
   return true;
 };
 
-var parseRaw = function(raw) {
+var parseRaw = function(raw, opts) {
+  opts = opts || {};
+
   try {
     var json = JSON.parse(raw);
   } catch (error) {
@@ -52,9 +54,19 @@ var parseRaw = function(raw) {
         (isTrue(element.strikethrough) ? 'line-through' : '');
 
     if ('clickEvent' in element) {
-      ever(node).on('click', function(ev) {
-        window.alert('Click event: ' + JSON.stringify(element.clickEvent));
-      });
+      var handleClick = opts.click;
+
+      if (handleClick === undefined) { // default action
+        handleClick = function(element, ev) {
+          window.alert('Clicked element: ' + JSON.stringify(element));
+        };
+      }
+
+      if (handleClick) { // if not no action
+        ever(node).on('click', function(ev) {
+          handleClick(element, ev);
+        });
+      }
     }
 
     if ('hoverEvent' in element) {
