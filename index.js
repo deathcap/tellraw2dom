@@ -19,6 +19,15 @@ var colormc2html = {
   white: 'white'
 };
 
+var translations = {
+  'chat.type.text': '<%s> %s',
+  'chat.type.emote': '* %s %s',
+  'chat.type.announcement': '[%s] %s',
+  'chat.type.admin': '[%s: %s]',
+  'chat.stream.text': '(%s) <%s> %s',
+  'chat.stream.emote': '(%s) * %s %s'
+};
+
 var isTrue = function(x) {
   if (x === undefined) return false;
   if (x === 'false') return false;
@@ -49,7 +58,6 @@ var parseRaw = function(raw, opts) {
     var node = document.createElement('span');
 
     if ('color' in element) node.style.color = colormc2html[element.color];
-    if ('text' in element) node.textContent = element.text;
     if (isTrue(element.bold)) node.style.fontWeight = 'bold';
     if (isTrue(element.italic)) node.style.fontStyle = 'italic';
     if (isTrue(element.underlined) || isTrue(element.strikethrough))
@@ -77,6 +85,20 @@ var parseRaw = function(raw, opts) {
           opts.hoverOut(element, element.hoverEvent, ev);
         });
       }
+    }
+
+    if ('text' in element) node.textContent = element.text;
+    if ('translate' in element) {
+      var translate = translations[element.translate] || '';
+      var translateTexts = translate.split('%s');
+
+      element['with'].forEach(function(x, i) {
+        node.appendChild(document.createTextNode(translateTexts[i] || ' '));
+        node.appendChild(parseObject(x));
+      });
+
+      if (!/%s$/.test(translateTexts))
+        node.appendChild(document.createTextNode(translateTexts.splice(-1)[0]));
     }
 
     if ('extra' in element) {
