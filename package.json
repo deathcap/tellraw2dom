@@ -1,7 +1,7 @@
 {
   "name": "tellraw2dom",
   "description": "tellraw to DOM converter",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "repository": {
     "type": "git",
     "url": "git@github.com:deathcap/tellraw2dom.git"
@@ -11,8 +11,7 @@
     "chat",
     "html"
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {},
   "devDependencies": {
     "beefy": "0.4.5"
