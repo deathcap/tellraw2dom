@@ -6,7 +6,11 @@
     "type": "git",
     "url": "git@github.com:deathcap/tellraw2dom.git"
   },
-  "keywords": [],
+  "keywords": [
+    "minecraft",
+    "chat",
+    "html"
+  ],
   "dependencies": {
     "ever": "0.0.3"
   },

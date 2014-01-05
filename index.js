@@ -28,13 +28,19 @@ var isTrue = function(x) {
 };
 
 var parseRaw = function(raw, opts) {
+  var json;
+
   opts = opts || {};
 
-  try {
-    var json = JSON.parse(raw);
-  } catch (error) {
-    console.log(raw);
-    return document.createTextNode('Invalid JSON: ' + error);
+  if (typeof raw === 'string') {
+    try {
+      json = JSON.parse(raw);
+    } catch (error) {
+      console.log(raw);
+      return document.createTextNode('Invalid JSON: ' + error);
+    }
+  } else {
+    json = raw;
   }
 
   var parseObject = function(element, state) {
