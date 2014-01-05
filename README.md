@@ -2,7 +2,7 @@
 
 Convert Minecraft's raw chat format to HTML DOM nodes for display in a web browser.
 
-*[Interactive demo](https://deathcap.github.io/tellraw2dom)*
+*[Interactive demo](http://deathcap.github.io/tellraw2dom)*
 
 ## Usage
 
@@ -17,7 +17,7 @@ You can pass either a string to be parsed as JSON, or an object which has alread
 `tellraw2dom` optionally accepts a second argument to specify `click`, `hover`, and `hoverOut`
 callbacks to support the `clickEvent` and `hoverEvent` properties.
 
-Run `npm start` for a more sophisticated example or visit [https://deathcap.github.io/tellraw2dom](https://deathcap.github.io/tellraw2dom).
+Run `npm start` for a more sophisticated example or visit [http://deathcap.github.io/tellraw2dom](http://deathcap.github.io/tellraw2dom).
 
 
 Minecraft is property of Mojang Specifications
