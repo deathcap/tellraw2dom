@@ -92,7 +92,7 @@ var parseRaw = function(raw, opts) {
       var translate = translations[element.translate] || '';
       var translateTexts = translate.split('%s');
 
-      element['with'].forEach(function(x, i) {
+      (element['with'] || []).forEach(function(x, i) {
         node.appendChild(document.createTextNode(translateTexts[i] || ' '));
         node.appendChild(parseObject(x));
       });
