@@ -27,7 +27,7 @@ var update = function(ev) {
   while(outputNode.firstChild)
     outputNode.removeChild(outputNode.firstChild);
 
-  var output = tellraw2dom({"text": "hi", "color": "white"}); //inputText, opts);
+  var output = tellraw2dom(inputText, opts);
 
   if (output)
     outputNode.appendChild(output);
