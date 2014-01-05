@@ -2,6 +2,8 @@
 
 Convert Minecraft's raw chat format to HTML DOM nodes for display in a web browser.
 
+*[Interactive demo](https://deathcap.github.io/tellraw2dom)*
+
 ## Usage
 
     var tellraw2dom = require('tellraw2dom');
@@ -10,6 +12,12 @@ Convert Minecraft's raw chat format to HTML DOM nodes for display in a web brows
     document.body.appendChild(node);
 
 DOM nodes will be created appropriately to display 'hello *world!*' colored aqua. 
+
+You can pass either a string to be parsed as JSON, or an object which has already been parsed.
+`tellraw2dom` optionally accepts a second argument to specify `click`, `hover`, and `hoverOut`
+callbacks to support the `clickEvent` and `hoverEvent` properties.
+
+Run `npm start` for a more sophisticated example or visit [https://deathcap.github.io/tellraw2dom](https://deathcap.github.io/tellraw2dom).
 
 
 Minecraft is property of Mojang Specifications
