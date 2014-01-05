@@ -89,7 +89,7 @@ var parseRaw = function(raw, opts) {
 
     if ('text' in element) node.textContent = element.text;
     if ('translate' in element) {
-      var translate = translations[element.translate] || '';
+      var translate = translations[element.translate] || element.translate;
       var translateTexts = translate.split('%s');
 
       (element['with'] || []).forEach(function(x, i) {
