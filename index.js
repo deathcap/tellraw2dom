@@ -41,7 +41,7 @@ var parseRaw = function(raw, opts) {
     json = raw;
   }
 
-  var parseObject = function(element, state) {
+  var parseObject = function(element) {
     if (typeof element === 'string') {
       return document.createTextNode(element);
     }
