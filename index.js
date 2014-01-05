@@ -1,7 +1,5 @@
 'use strict';
 
-var ever = require('ever');
-
 var colormc2html = {
   black: 'black',
   dark_blue: '#0000b2',
@@ -61,7 +59,7 @@ var parseRaw = function(raw, opts) {
 
     if ('clickEvent' in element) {
       if (opts.click) {
-        ever(node).on('click', function(ev) {
+        node.addEventListener('click', function(ev) {
           opts.click(element, element.clickEvent, ev);
         });
       }
@@ -69,13 +67,13 @@ var parseRaw = function(raw, opts) {
 
     if ('hoverEvent' in element) {
       if (opts.hover) {
-        ever(node).on('mouseover', function(ev) {
+        node.addEventListener('mouseover', function(ev) {
           opts.hover(element, element.hoverEvent, ev);
         });
       }
 
       if (opts.hoverOut) {
-        ever(node).on('mouseout', function(ev) {
+        node.addEventListener('mouseout', function(ev) {
           opts.hoverOut(element, element.hoverEvent, ev);
         });
       }

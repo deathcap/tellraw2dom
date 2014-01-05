@@ -12,7 +12,6 @@
     "html"
   ],
   "dependencies": {
-    "ever": "0.0.3"
   },
   "peerDependencies": {},
   "devDependencies": {

@@ -1,5 +1,4 @@
 var tellraw2dom = require('./');
-var ever = require('ever');
 
 var inputNode = document.getElementById('input');
 var outputNode = document.getElementById('output');
@@ -33,7 +32,7 @@ var update = function(ev) {
     outputNode.appendChild(output);
 };
 
-ever(document.body).on('keyup', update);
+document.body.addEventListener('keyup', update);
 
 update();
 

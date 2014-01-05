@@ -6,6 +6,12 @@ Convert Minecraft's raw chat format to HTML DOM nodes for display in a web brows
 
     var tellraw2dom = require('tellraw2dom');
 
+    var node = tellraw2dom('{"text": "hello ", "color": "aqua", "extra": [{"text": "world!", "bold": "true"}]}');
+    document.body.appendChild(node);
+
+DOM nodes will be created appropriately to display 'hello *world!*' colored aqua. 
+
+
 Minecraft is property of Mojang Specifications
 
 ## See also
